@@ -1,0 +1,37 @@
+from pysnmp.hlapi import *
+from os import *
+import index
+import oid
+
+g=()
+
+g = errorIndication, errorStatus, errorIndex, varBinds = next(
+    nextCmd(SnmpEngine(),
+    CommunityData(index.comunity,mpModel=1),
+    UdpTransportTarget((index.ip, 161)),
+    ContextData(),
+    ObjectType(ObjectIdentity(oid.Descr)),
+    ObjectType(ObjectIdentity(oid.ObjectID)),
+    ObjectType(ObjectIdentity(oid.UpTime)),
+    ObjectType(ObjectIdentity(oid.Name)),
+    ObjectType(ObjectIdentity(oid.Location)),
+    ObjectType(ObjectIdentity(oid.Services)),
+
+
+               ),
+)
+
+if errorIndication:
+    print(errorIndication)
+elif errorStatus:
+    print('%s at %s' % (errorStatus.prettyPrint(),
+                        errorIndex and varBinds[int(errorIndex) - 1][0] or '?'))
+else:
+
+
+     next(print (g[0],
+           g[1],
+           g[2],
+           g[3],
+           g[4],
+                ),)
