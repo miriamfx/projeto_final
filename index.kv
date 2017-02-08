@@ -1,0 +1,33 @@
+snmpGetLayout:
+
+<snmpGetLayout>:
+    orientation: 'vertical'
+
+    recebe_IP:recebe_IP
+    recebe_COMU:recebe_COMU
+
+
+    BoxLayout:
+        orientation:'vertical'
+        cols: 1
+        spacing: 20
+        padding: [200,10]
+
+        BoxLayout:
+            orientation: 'horizontal'
+            Label:
+                text: 'DIGITE IP'
+                size_hint_x: .5
+            Label:
+                text:'0'
+                id: recebe_IP
+                size_hint_x: 1
+
+            orientation: 'horizontal'
+            Label:
+                text: 'DIGITE Comunity'
+                size_hint_x: .5
+            Label:
+                text:'0'
+                id: recebe_COMU
+                size_hint_x: 1
