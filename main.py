@@ -7,7 +7,7 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.core.window import Window
 from get import SimpleSnmp 
-#A snmptool é responsável por criar a interface receber os parâmetros e imprimir o resultado
+
 class SnmpToolApp(App):
     h = '::. Get .::'
     #textinput_resultado = ObjectProperty(None)
@@ -20,7 +20,6 @@ class SnmpToolApp(App):
         #self.ids["textinput_resultado"].text = resultado
         print (resultado)
 
-#No get values instanciamos um objeto da classe simplegetsnmp (get.py)
 
     def get_values_form(self, ip, community):
         a= SimpleSnmp(ip,community)
