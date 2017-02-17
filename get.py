@@ -10,6 +10,7 @@ class SimpleSnmp():
         self.community = community
 
 
+
     def GetSNMP(self):
         resultado = errorIndication, errorStatus, errorIndex, varBinds = next(
             getCmd(SnmpEngine(),
@@ -30,5 +31,10 @@ class SimpleSnmp():
             return str('%s at %s' % (errorStatus.prettyPrint(),
                                      errorIndex and varBinds[int(errorIndex) - 1][0] or '?'))
         else:
-            self.set_result_form (str(resultado))
+            return str(resultado)
+
+
+
+
+
 
