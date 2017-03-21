@@ -1,7 +1,7 @@
 from pysnmp.hlapi import *
 from kivy.properties import ObjectProperty
 from os import *
-import oid
+
 
 
 class SimpleSnmp():
@@ -17,14 +17,16 @@ class SimpleSnmp():
                    CommunityData(self.community),
                    UdpTransportTarget((self.ip, 161)),
                    ContextData(),
-                   ObjectType(ObjectIdentity(oid.Descr)),
-                   ObjectType(ObjectIdentity(oid.UpTime)),
-                   ObjectType(ObjectIdentity(oid.Contact)),
-                   ObjectType(ObjectIdentity(oid.Name)),
-                   ObjectType(ObjectIdentity(oid.ObjectID)),
-                   ObjectType(ObjectIdentity(oid.Location)),
-                   ObjectType(ObjectIdentity(oid.Services)),
-                   ), )
+
+                       ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysContact', 0)),
+                       ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysDescr', 0)),
+                       ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysObjectID', 0)),
+                       ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysLocation', 0)),
+                       ObjectType(ObjectIdentity('SNMPv2-MIB', 'sysUpTime', 0)),
+
+
+                      ),
+        )
         if errorIndication:
             return str(errorIndication)
         elif errorStatus:
@@ -32,6 +34,7 @@ class SimpleSnmp():
                                      errorIndex and varBinds[int(errorIndex) - 1][0] or '?'))
         else:
             return str(resultado)
+
 
 
 
